@@ -1439,6 +1439,11 @@ Resources:
                 Bucket: !Ref ProxyBucket
                 AllowedOrigins:
                     - !Sub https://${CloudFrontDistributionDomainName}
+                    - https://selfserve.decipherinc.com
+                    - http://localhost:5173
+                    - http://127.0.0.1:5173
+                    - https://plus.dev.dashmr.com"
+                    - https://plus.dashmr.com"
                 AllowedMethods:
                     - HEAD
                     - GET
