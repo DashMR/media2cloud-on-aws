@@ -1183,7 +1183,7 @@ Resources:
         Type: AWS::Cognito::IdentityPool
         Properties:
             IdentityPoolName: !Sub ${ResourcePrefix}-identity
-            AllowUnauthenticatedIdentities: false
+            AllowUnauthenticatedIdentities: true
             CognitoIdentityProviders:
                 -
                   ClientId: !Ref CognitoAppClient
@@ -1227,12 +1227,50 @@ Resources:
                                     - !GetAtt UserPoolGroupCreatorRole.Arn
                                     - !GetAtt UserPoolGroupViewerRole.Arn
 
+    CognitoUnauthenticatedRole:
+        Type: AWS::IAM::Role
+        Metadata:
+            cfn_nag:
+                rules_to_suppress:
+                    -
+                        id: W11
+                        reason: This wildcard is present as the authenticated cognito role needs to be able to access contents within the bucket!
+        Properties:
+            AssumeRolePolicyDocument:
+                Version: "2012-10-17"
+                Statement:
+                    -
+                        Effect: Allow
+                        Principal:
+                            Federated: cognito-identity.amazonaws.com
+                        Action: sts:AssumeRoleWithWebIdentity
+                        Condition:
+                            StringEquals:
+                                cognito-identity.amazonaws.com:aud: !Ref CognitoIdentityPool
+                            ForAnyValue:StringLike:
+                                cognito-identity.amazonaws.com:amr: unauthenticated
+            Path: !Sub /${ResourcePrefix}/
+            Policies:
+                -
+                    PolicyName: !Sub ${ResourcePrefix}-CognitoUnauthUser
+                    PolicyDocument:
+                        Version: "2012-10-17"
+                        Statement:
+                            -
+                                Effect: Allow
+                                Action:
+                                    - s3:PutObject
+                                    - s3:PutObjectVersionTagging
+                                    - s3:PutObjectTagging
+                                Resource: !Sub arn:aws:s3:::${IngestBucket}/*
+
     CognitoIdentityPoolRoleAttachment:
         Type: AWS::Cognito::IdentityPoolRoleAttachment
         Properties:
             IdentityPoolId: !Ref CognitoIdentityPool
             Roles:
                 authenticated: !GetAtt CognitoAuthenticatedRole.Arn
+                unauthenticated: !GetAtt CognitoUnauthenticatedRole.Arn
             RoleMappings:
                 userpool:
                     AmbiguousRoleResolution: Deny
