@@ -1375,6 +1375,9 @@ Resources:
                 Bucket: !Ref IngestBucket
                 AllowedOrigins:
                     - !Sub https://${CloudFrontDistributionDomainName}
+                    - https://selfserve.decipherinc.com
+                    - http://localhost:5173
+                    - http://127.0.0.1:5173
                 AllowedMethods:
                     - HEAD
                     - GET
