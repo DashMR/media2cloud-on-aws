@@ -2802,7 +2802,7 @@ Resources:
             Layers:
                 - !Ref AwsSdkLayer
                 - !Ref CoreLibLayer
-                - !Ref ImageProcessLayer
+                #- !Ref ImageProcessLayer # This caused Lambda to exceed layer size total of 250MB and failed CloudFormation deployment. We aren't using the image processing at this point. Will submit issue to AWS.
             TracingConfig:
                 Mode: Active
             Environment:
