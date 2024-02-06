@@ -1416,6 +1416,9 @@ Resources:
                     - https://selfserve.decipherinc.com
                     - http://localhost:5173
                     - http://127.0.0.1:5173
+                    - http://localhost:5174
+                    - https://survey.dashmr.com
+                    - https://survey.dev.dashmr.com
                 AllowedMethods:
                     - HEAD
                     - GET
@@ -1442,8 +1445,11 @@ Resources:
                     - https://selfserve.decipherinc.com
                     - http://localhost:5173
                     - http://127.0.0.1:5173
+                    - http://localhost:5174
                     - https://plus.dev.dashmr.com
                     - https://plus.dashmr.com
+                    - https://survey.dashmr.com
+                    - https://survey.dev.dashmr.com
                 AllowedMethods:
                     - HEAD
                     - GET
