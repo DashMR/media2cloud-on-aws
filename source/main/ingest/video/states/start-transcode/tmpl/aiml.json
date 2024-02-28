@@ -4,6 +4,46 @@
   "Outputs": [
     {
       "ContainerSettings": {
+        "Container": "WEBM"
+      },
+      "VideoDescription": {
+        "Width": 0,
+        "ScalingBehavior": "DEFAULT",
+        "Height": 0,
+        "VideoPreprocessors": {
+          "Deinterlacer": {
+            "Algorithm": "INTERPOLATE",
+            "Mode": "DEINTERLACE",
+            "Control": "NORMAL"
+          }
+        },
+        "Sharpness": 50,
+        "CodecSettings": {
+          "Codec": "VP8",
+          "Vp8Settings": {
+            "RateControlMode": "VBR",
+            "Bitrate": 5000000
+          }
+        }
+      },
+      "AudioDescriptions": [
+        {
+          "AudioTypeControl": "FOLLOW_INPUT",
+          "AudioSourceName": "##PLACEHOLDER",
+          "CodecSettings": {
+            "Codec": "OPUS",
+            "OpusSettings": {
+              "Bitrate": 96000,
+              "SampleRate": 48000
+            }
+          },
+          "LanguageCodeControl": "FOLLOW_INPUT"
+        }
+      ],
+      "Extension": "webm"
+    },
+    {
+      "ContainerSettings": {
         "Container": "MOV",
         "MovSettings": {
           "ClapAtom": "EXCLUDE",
