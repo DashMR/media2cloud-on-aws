@@ -192,12 +192,12 @@ Parameters:
     ProxyBucket:
         Type: String
         Description: ProxyBucket
-    OpenSearchDomainName:
-        Type: String
-        Description: OpenSearchDomainName
-    OpenSearchDomainEndpoint:
-        Type: String
-        Description: OpenSearchDomainEndpoint
+#    OpenSearchDomainName:
+#        Type: String
+#        Description: OpenSearchDomainName
+#    OpenSearchDomainEndpoint:
+#        Type: String
+#        Description: OpenSearchDomainEndpoint
     DefaultAIOptions:
         Type: String
         Description: DefaultAIOptions
@@ -484,7 +484,7 @@ Resources:
                                 - DynamoDB
                                 - Backlog
                                 - GSIStatusSortKey
-                            KeyType: RANGE                            
+                            KeyType: RANGE
                     Projection:
                         ProjectionType: INCLUDE
                         NonKeyAttributes:
@@ -3145,17 +3145,17 @@ Resources:
                                 Action: iot:Publish
                                 Resource: !Sub arn:aws:iot:${AWS::Region}:${AWS::AccountId}:topic/${IotTopic}
                             # OpenSearch
-                            -
-                                Effect: Allow
-                                Action:
-                                    - es:ESHttpGet
-                                    - es:ESHttpHead
-                                    - es:ESHttpPost
-                                    - es:ESHttpPut
-                                    - es:ESHttpDelete
-                                Resource:
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
+#                            -
+#                                Effect: Allow
+#                                Action:
+#                                    - es:ESHttpGet
+#                                    - es:ESHttpHead
+#                                    - es:ESHttpPost
+#                                    - es:ESHttpPut
+#                                    - es:ESHttpDelete
+#                                Resource:
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
                             # SNS
                             -
                                 Effect: Allow
@@ -3216,7 +3216,7 @@ Resources:
                     ENV_INGEST_BUCKET: !Ref IngestBucket
                     ENV_PROXY_BUCKET: !Ref ProxyBucket
                     ENV_SNS_TOPIC_ARN: !Ref SNSTopic
-                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
+#                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
 
     IngestMainStateMachine:
         Type: AWS::StepFunctions::StateMachine
@@ -3553,17 +3553,17 @@ Resources:
                                     - s3:DeleteObject
                                 Resource: !Sub arn:aws:s3:::${ProxyBucket}/*
                             # OpenSearch - allow delete document on REMOVE event
-                            -
-                                Effect: Allow
-                                Action:
-                                    - es:ESHttpGet
-                                    - es:ESHttpHead
-                                    - es:ESHttpPost
-                                    - es:ESHttpPut
-                                    - es:ESHttpDelete
-                                Resource:
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
+#                            -
+#                                Effect: Allow
+#                                Action:
+#                                    - es:ESHttpGet
+#                                    - es:ESHttpHead
+#                                    - es:ESHttpPost
+#                                    - es:ESHttpPut
+#                                    - es:ESHttpDelete
+#                                Resource:
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
 
     IngestStatusUpdaterLambda:
         Type: AWS::Lambda::Function
@@ -3618,7 +3618,7 @@ Resources:
                     ENV_INGEST_BUCKET: !Ref IngestBucket
                     ENV_PROXY_BUCKET: !Ref ProxyBucket
                     ENV_SNS_TOPIC_ARN: !Ref SNSTopic
-                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
+#                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
 
     ################################################################################
     # DynamoDB Ingest Table DDB Stream Event
@@ -3909,17 +3909,17 @@ Resources:
                                 Action: rekognition:DescribeProjectVersions
                                 Resource: !Sub arn:aws:rekognition:${AWS::Region}:${AWS::AccountId}:project/*/*
                             # OpenSearch
-                            -
-                                Effect: Allow
-                                Action:
-                                    - es:ESHttpGet
-                                    - es:ESHttpHead
-                                    - es:ESHttpPost
-                                    - es:ESHttpPut
-                                    - es:ESHttpDelete
-                                Resource:
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
+#                            -
+#                                Effect: Allow
+#                                Action:
+#                                    - es:ESHttpGet
+#                                    - es:ESHttpHead
+#                                    - es:ESHttpPost
+#                                    - es:ESHttpPut
+#                                    - es:ESHttpDelete
+#                                Resource:
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
 
     AnalysisVideoLambda:
         Type: AWS::Lambda::Function
@@ -3974,7 +3974,7 @@ Resources:
                     ENV_IOT_HOST: !Ref IotHost
                     ENV_IOT_TOPIC: !Ref IotTopic
                     ENV_PROXY_BUCKET: !Ref ProxyBucket
-                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
+#                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
                     ## Service Backlog ##
                     ENV_BACKLOG_EB_BUS: !GetAtt EventBridgeBus.Name
                     ENV_BACKLOG_TABLE: !Ref BacklogTable
@@ -4587,17 +4587,17 @@ Resources:
                                 Action: events:PutEvents
                                 Resource: !GetAtt EventBridgeBus.Arn
                             # OpenSearch
-                            -
-                                Effect: Allow
-                                Action:
-                                    - es:ESHttpGet
-                                    - es:ESHttpHead
-                                    - es:ESHttpPost
-                                    - es:ESHttpPut
-                                    - es:ESHttpDelete
-                                Resource:
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
+#                            -
+#                                Effect: Allow
+#                                Action:
+#                                    - es:ESHttpGet
+#                                    - es:ESHttpHead
+#                                    - es:ESHttpPost
+#                                    - es:ESHttpPut
+#                                    - es:ESHttpDelete
+#                                Resource:
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
 
     AnalysisAudioLambda:
         Type: AWS::Lambda::Function
@@ -4652,7 +4652,7 @@ Resources:
                     ENV_IOT_TOPIC: !Ref IotTopic
                     ENV_PROXY_BUCKET: !Ref ProxyBucket
                     ENV_DATA_ACCESS_ROLE: !GetAtt ServiceDataAccessRole.Arn
-                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
+#                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
                     # Service Backlog ##
                     ENV_BACKLOG_EB_BUS: !GetAtt EventBridgeBus.Name
                     ENV_BACKLOG_TABLE: !Ref BacklogTable
@@ -5228,17 +5228,17 @@ Resources:
                                     - rekognition:SearchFacesByImage
                                 Resource: "*"
                             # OpenSearch
-                            -
-                                Effect: Allow
-                                Action:
-                                    - es:ESHttpGet
-                                    - es:ESHttpHead
-                                    - es:ESHttpPost
-                                    - es:ESHttpPut
-                                    - es:ESHttpDelete
-                                Resource:
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
+#                            -
+#                                Effect: Allow
+#                                Action:
+#                                    - es:ESHttpGet
+#                                    - es:ESHttpHead
+#                                    - es:ESHttpPost
+#                                    - es:ESHttpPut
+#                                    - es:ESHttpDelete
+#                                Resource:
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
 
     AnalysisImageLambda:
         Type: AWS::Lambda::Function
@@ -5291,7 +5291,7 @@ Resources:
                     ENV_IOT_HOST: !Ref IotHost
                     ENV_IOT_TOPIC: !Ref IotTopic
                     ENV_PROXY_BUCKET: !Ref ProxyBucket
-                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
+#                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
 
     # BLIP model lambda
     BlipModelLogGroup:
@@ -5642,17 +5642,17 @@ Resources:
                                 Action: textract:AnalyzeDocument
                                 Resource: "*"
                             # OpenSearch
-                            -
-                                Effect: Allow
-                                Action:
-                                    - es:ESHttpGet
-                                    - es:ESHttpHead
-                                    - es:ESHttpPost
-                                    - es:ESHttpPut
-                                    - es:ESHttpDelete
-                                Resource:
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
+#                            -
+#                                Effect: Allow
+#                                Action:
+#                                    - es:ESHttpGet
+#                                    - es:ESHttpHead
+#                                    - es:ESHttpPost
+#                                    - es:ESHttpPut
+#                                    - es:ESHttpDelete
+#                                Resource:
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
 
     AnalysisDocumentLambda:
         Type: AWS::Lambda::Function
@@ -5705,7 +5705,7 @@ Resources:
                     ENV_IOT_HOST: !Ref IotHost
                     ENV_IOT_TOPIC: !Ref IotTopic
                     ENV_PROXY_BUCKET: !Ref ProxyBucket
-                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
+#                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
 
     AnalysisDocumentStateMachine:
         Type: AWS::StepFunctions::StateMachine
@@ -5860,17 +5860,17 @@ Resources:
                                     - dynamodb:DeleteItem
                                 Resource: !Sub arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ResourcePrefix}-*
                             # OpenSearch
-                            -
-                                Effect: Allow
-                                Action:
-                                    - es:ESHttpGet
-                                    - es:ESHttpHead
-                                    - es:ESHttpPost
-                                    - es:ESHttpPut
-                                    - es:ESHttpDelete
-                                Resource:
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
+#                            -
+#                                Effect: Allow
+#                                Action:
+#                                    - es:ESHttpGet
+#                                    - es:ESHttpHead
+#                                    - es:ESHttpPost
+#                                    - es:ESHttpPut
+#                                    - es:ESHttpDelete
+#                                Resource:
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
                             # IoT
                             -
                                 Effect: Allow
@@ -5954,7 +5954,7 @@ Resources:
                     ENV_IOT_HOST: !Ref IotHost
                     ENV_IOT_TOPIC: !Ref IotTopic
                     ENV_PROXY_BUCKET: !Ref ProxyBucket
-                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
+#                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
                     ENV_SNS_TOPIC_ARN: !Ref SNSTopic
                     ## Default AI/ML options ##
                     ENV_DEFAULT_AI_OPTIONS: !Ref DefaultAIOptions
