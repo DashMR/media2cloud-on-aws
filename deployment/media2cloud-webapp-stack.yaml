@@ -82,12 +82,12 @@ Parameters:
     CloudFrontDistributionDomainName:
         Type: String
         Description: CloudFrontDistributionDomainName
-    OpenSearchDomainName:
-        Type: String
-        Description: OpenSearchDomainName
-    OpenSearchDomainEndpoint:
-        Type: String
-        Description: OpenSearchDomainEndpoint
+#    OpenSearchDomainName:
+#        Type: String
+#        Description: OpenSearchDomainName
+#    OpenSearchDomainEndpoint:
+#        Type: String
+#        Description: OpenSearchDomainEndpoint
     DefaultAIOptions:
         Type: String
         Description: DefaultAIOptions
@@ -239,18 +239,18 @@ Resources:
                                     - s3:PutObject
                                     - s3:DeleteObject
                                 Resource: !Sub arn:aws:s3:::${ProxyBucket}/*
-                            # OpenSearch
-                            -
-                                Effect: Allow
-                                Action:
-                                    - es:ESHttpGet
-                                    - es:ESHttpHead
-                                    - es:ESHttpPost
-                                    - es:ESHttpPut
-                                    - es:ESHttpDelete
-                                Resource:
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
-                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
+#                            # OpenSearch
+#                            -
+#                                Effect: Allow
+#                                Action:
+#                                    - es:ESHttpGet
+#                                    - es:ESHttpHead
+#                                    - es:ESHttpPost
+#                                    - es:ESHttpPut
+#                                    - es:ESHttpDelete
+#                                Resource:
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}
+#                                    - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomainName}/*
                             # Note: Attach Backend resources such as Step Functions and DynamoDB in the main stack
 
     ApiLambda:
@@ -306,7 +306,7 @@ Resources:
                     ENV_IOT_THING_POLICY_NAME: !Ref IotThingPolicy
                     ENV_INGEST_BUCKET: !Ref IngestBucket
                     ENV_PROXY_BUCKET: !Ref ProxyBucket
-                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
+#                    ENV_ES_DOMAIN_ENDPOINT: !Ref OpenSearchDomainEndpoint
                     ENV_DEFAULT_AI_OPTIONS: !Ref DefaultAIOptions
                     ENV_DEFAULT_MINCONFIDENCE: !Ref DefaultMinConfidence
                     ENV_USER_POOL_ID: !Ref CognitoUserPool

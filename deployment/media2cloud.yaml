@@ -48,15 +48,15 @@ Parameters:
         Description: If you have an existing bucket that you would like to store uploaded contents, specify the bucket name. Otherwise, leave it blank to auto create a new bucket
         Default: ""
     # Elasticsearch
-    OpenSearchCluster:
-        Type: String
-        Description: Configure Amazon OpenSearch cluster size
-        Default: Development and Testing (t3.medium=0,m5.large=1,gp2=10,az=1)
-        AllowedValues:
-            - Development and Testing (t3.medium=0,m5.large=1,gp2=10,az=1)
-            - Suitable for Production Workload (t3.medium=3,m5.large=2,gp2=20,az=2)
-            - Recommended for Production Workload (t3.medium=3,m5.large=4,gp2=20,az=2)
-            - Recommended for Large Production Workload (t3.medium=3,m5.large=6,gp2=40,az=3)
+#    OpenSearchCluster:
+#        Type: String
+#        Description: Configure Amazon OpenSearch cluster size
+#        Default: Development and Testing (t3.medium=0,m5.large=1,gp2=10,az=1)
+#        AllowedValues:
+#            - Development and Testing (t3.medium=0,m5.large=1,gp2=10,az=1)
+#            - Suitable for Production Workload (t3.medium=3,m5.large=2,gp2=20,az=2)
+#            - Recommended for Production Workload (t3.medium=3,m5.large=4,gp2=20,az=2)
+#            - Recommended for Large Production Workload (t3.medium=3,m5.large=6,gp2=40,az=3)
     # AI/ML Settings
     DefaultAIOptions:
         Type: String
@@ -124,11 +124,11 @@ Metadata:
                     default: Amazon CloudFront
                 Parameters:
                     - PriceClass
-            -
-                Label:
-                    default: Amazon OpenSearch Service
-                Parameters:
-                    - OpenSearchCluster
+#            -
+#                Label:
+#                    default: Amazon OpenSearch Service
+#                Parameters:
+#                    - OpenSearchCluster
             -
                 Label:
                     default: AI/ML Default Settings
@@ -156,8 +156,8 @@ Metadata:
                 default: Email
             PriceClass:
                 default: Price Class
-            OpenSearchCluster:
-                default: OpenSearch Cluster
+#            OpenSearchCluster:
+#                default: OpenSearch Cluster
             DefaultAIOptions:
                 default: Analysis Feature(s)
             UserDefinedIngestBucket:
@@ -441,58 +441,58 @@ Resources:
                 CustomResourcesLambdaArn: !GetAtt CustomResourcesLambda.Arn
                 CustomResourcesRoleName: !Ref CustomResourcesRole
                 UserDefinedIngestBucket: !Ref UserDefinedIngestBucket
-                OpenSearchDedicatedMaster: !Select
-                    - 0
-                    - !Split
-                        - ","
-                        - !Select
-                            - 0
-                            - !Split
-                                - ")"
-                                - !Select
-                                    - 1
-                                    - !Split
-                                        - "("
-                                        - !Ref OpenSearchCluster
-                OpenSearchInstance: !Select
-                    - 1
-                    - !Split
-                        - ","
-                        - !Select
-                            - 0
-                            - !Split
-                                - ")"
-                                - !Select
-                                    - 1
-                                    - !Split
-                                        - "("
-                                        - !Ref OpenSearchCluster
-                OpenSearchVolume: !Select
-                    - 2
-                    - !Split
-                        - ","
-                        - !Select
-                            - 0
-                            - !Split
-                                - ")"
-                                - !Select
-                                    - 1
-                                    - !Split
-                                        - "("
-                                        - !Ref OpenSearchCluster
-                OpenSearchAvailabilityZone: !Select
-                    - 3
-                    - !Split
-                        - ","
-                        - !Select
-                            - 0
-                            - !Split
-                                - ")"
-                                - !Select
-                                    - 1
-                                    - !Split
-                                        - "("
-                                        - !Ref OpenSearchCluster
+#                OpenSearchDedicatedMaster: !Select
+#                    - 0
+#                    - !Split
+#                        - ","
+#                        - !Select
+#                            - 0
+#                            - !Split
+#                                - ")"
+#                                - !Select
+#                                    - 1
+#                                    - !Split
+#                                        - "("
+#                                        - !Ref OpenSearchCluster
+#                OpenSearchInstance: !Select
+#                    - 1
+#                    - !Split
+#                        - ","
+#                        - !Select
+#                            - 0
+#                            - !Split
+#                                - ")"
+#                                - !Select
+#                                    - 1
+#                                    - !Split
+#                                        - "("
+#                                        - !Ref OpenSearchCluster
+#                OpenSearchVolume: !Select
+#                    - 2
+#                    - !Split
+#                        - ","
+#                        - !Select
+#                            - 0
+#                            - !Split
+#                                - ")"
+#                                - !Select
+#                                    - 1
+#                                    - !Split
+#                                        - "("
+#                                        - !Ref OpenSearchCluster
+#                OpenSearchAvailabilityZone: !Select
+#                    - 3
+#                    - !Split
+#                        - ","
+#                        - !Select
+#                            - 0
+#                            - !Split
+#                                - ")"
+#                                - !Select
+#                                    - 1
+#                                    - !Split
+#                                        - "("
+#                                        - !Ref OpenSearchCluster
                 PriceClass: !Select
                     - 0
                     - !Split
@@ -593,8 +593,8 @@ Resources:
                 WebBucket: !GetAtt CoreStack.Outputs.WebBucket
                 CloudFrontDistributionId: !GetAtt CoreStack.Outputs.CloudFrontDistributionId
                 CloudFrontDistributionDomainName: !GetAtt CoreStack.Outputs.CloudFrontDistributionDomainName
-                OpenSearchDomainName: !GetAtt CoreStack.Outputs.OpenSearchDomainName
-                OpenSearchDomainEndpoint: !GetAtt CoreStack.Outputs.OpenSearchDomainEndpoint
+#                OpenSearchDomainName: !GetAtt CoreStack.Outputs.OpenSearchDomainName
+#                OpenSearchDomainEndpoint: !GetAtt CoreStack.Outputs.OpenSearchDomainEndpoint
                 DefaultAIOptions: !Select
                     - 0
                     - !Split
@@ -700,8 +700,8 @@ Resources:
                 ProxyBucket: !GetAtt CoreStack.Outputs.ProxyBucket
                 #WebBucket: !GetAtt CoreStack.Outputs.WebBucket
                 #CloudFrontDistributionId: !GetAtt CoreStack.Outputs.CloudFrontDistributionId
-                OpenSearchDomainName: !GetAtt CoreStack.Outputs.OpenSearchDomainName
-                OpenSearchDomainEndpoint: !GetAtt CoreStack.Outputs.OpenSearchDomainEndpoint
+#                OpenSearchDomainName: !GetAtt CoreStack.Outputs.OpenSearchDomainName
+#                OpenSearchDomainEndpoint: !GetAtt CoreStack.Outputs.OpenSearchDomainEndpoint
                 DefaultAIOptions: !Select
                     - 0
                     - !Split
@@ -994,7 +994,7 @@ Resources:
                     - Send
                     - AnonymizedUsage
                     - Data
-                OpenSearchCluster: !Ref OpenSearchCluster
+#                OpenSearchCluster: !Ref OpenSearchCluster
                 SolutionUuid: !GetAtt CoreStack.Outputs.SolutionUuid
 
     ################################################################################
@@ -1006,7 +1006,7 @@ Resources:
         Type: AWS::ServiceCatalogAppRegistry::Application
         Properties:
             Description: !Sub
-                - Service Catalog application to track and manage all your resources. The Solution ID is ${solutionId} and Solution Version is ${solutionVersion}.      
+                - Service Catalog application to track and manage all your resources. The Solution ID is ${solutionId} and Solution Version is ${solutionVersion}.
                 -
                     solutionId: !FindInMap
                         - Solution
@@ -1037,7 +1037,7 @@ Resources:
         Properties:
             Name: !Join ["-", [!Ref "AWS::Region", !Ref "AWS::StackName"]]
             Description: Attribute group for solution information.
-            Attributes: { 
+            Attributes: {
                 "ApplicationType": !FindInMap [Solution, Project, ApplicationType],
                 "Version": !FindInMap [Solution, Project, Version],
                 "SolutionID": !FindInMap [Solution, Project, Id],
