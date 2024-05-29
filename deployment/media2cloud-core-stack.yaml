@@ -550,17 +550,17 @@ Resources:
                         Action: mediaConvert:DescribeEndpoints
                         Resource: !Sub arn:aws:mediaconvert:${AWS::Region}:${AWS::AccountId}:*
                     # OpenSearch - create indices
-                    -
-                        Effect: Allow
-                        Action:
-                            - es:ESHttpGet
-                            - es:ESHttpHead
-                            - es:ESHttpPost
-                            - es:ESHttpPut
-                            - es:ESHttpDelete
-                        Resource:
-                            - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${ResourcePrefix}-storage
-                            - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${ResourcePrefix}-storage/*
+#                    -
+#                        Effect: Allow
+#                        Action:
+#                            - es:ESHttpGet
+#                            - es:ESHttpHead
+#                            - es:ESHttpPost
+#                            - es:ESHttpPut
+#                            - es:ESHttpDelete
+#                        Resource:
+#                            - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${ResourcePrefix}-storage
+#                            - !Sub arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${ResourcePrefix}-storage/*
 
     ################################################################################
     #
