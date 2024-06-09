@@ -1420,6 +1420,7 @@ Resources:
                     - http://localhost:5175
                     - https://survey.dashmr.com
                     - https://survey.dev.dashmr.com
+                    - https://emea.focusvision.com
                 AllowedMethods:
                     - HEAD
                     - GET
@@ -1452,6 +1453,7 @@ Resources:
                     - https://plus.dashmr.com
                     - https://survey.dashmr.com
                     - https://survey.dev.dashmr.com
+                    - https://emea.focusvision.com
                 AllowedMethods:
                     - HEAD
                     - GET
