@@ -57,6 +57,9 @@ Parameters:
             - Suitable for Production Workload (t3.medium=3,m5.large=2,gp2=20,az=2)
             - Recommended for Production Workload (t3.medium=3,m5.large=4,gp2=20,az=2)
             - Recommended for Large Production Workload (t3.medium=3,m5.large=6,gp2=40,az=3)
+            - Dash Local Dev (t3.medium=0,t3.small=1,gp2=10,az=1)
+            - Dash Staging (t3.medium=0,t3.medium=1,gp2=10,az=1)
+            - Dash Production Workload (t3.medium=3,m5.large=2,gp2=20,az=2)
     # AI/ML Settings
     DefaultAIOptions:
         Type: String
@@ -73,6 +76,7 @@ Parameters:
             - Video segment detection only (segment)
             - Speech to text only (transcribe)
             - Others - Celebrity and face matching (celeb,facematch)
+            - Dash (face,segment,transcribe,keyphrase,entity,sentiment)
     # SNS / Cognito parameters
     Email:
         Type: String
@@ -92,7 +96,7 @@ Parameters:
     StartOnObjectCreation:
         Type: String
         Description: Start workflow when directly upload assets to ingest S3 bucket
-        Default: "YES"
+        Default: "NO"
         AllowedValues:
             - "NO"
             - "YES"
