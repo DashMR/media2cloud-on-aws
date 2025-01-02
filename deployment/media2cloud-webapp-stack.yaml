@@ -1421,6 +1421,7 @@ Resources:
                     - https://survey.dashmr.com
                     - https://survey.dev.dashmr.com
                     - https://emea.focusvision.com
+                    - https://tes.decipherinc.com
                 AllowedMethods:
                     - HEAD
                     - GET
@@ -1454,6 +1455,7 @@ Resources:
                     - https://survey.dashmr.com
                     - https://survey.dev.dashmr.com
                     - https://emea.focusvision.com
+                    - https://tes.decipherinc.com
                 AllowedMethods:
                     - HEAD
                     - GET
