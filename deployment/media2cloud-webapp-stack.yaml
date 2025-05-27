@@ -1414,10 +1414,11 @@ Resources:
                 AllowedOrigins:
                     - !Sub https://${CloudFrontDistributionDomainName}
                     - https://selfserve.decipherinc.com
-                    - http://localhost:5173
-                    - http://127.0.0.1:5173
-                    - http://localhost:5174
-                    - http://localhost:5175
+                    - http://localhost:5173 # Dash+
+                    - http://127.0.0.1:5173 # Dash+
+                    - http://localhost:5174 # Dash Survey Tool (eventually will migrate to Flash Survey)
+                    - http://localhost:5175 # Media Recorder
+                    - http://localhost:3000 # Flash Surveys
                     - https://survey.dashmr.com
                     - https://survey.dev.dashmr.com
                     - https://emea.focusvision.com
@@ -1446,10 +1447,11 @@ Resources:
                 AllowedOrigins:
                     - !Sub https://${CloudFrontDistributionDomainName}
                     - https://selfserve.decipherinc.com
-                    - http://localhost:5173
-                    - http://127.0.0.1:5173
-                    - http://localhost:5174
-                    - http://localhost:5175
+                    - http://localhost:5173 # Dash+
+                    - http://127.0.0.1:5173 # Dash+
+                    - http://localhost:5174 # Dash Survey Tool (eventually will migrate to Flash Survey)
+                    - http://localhost:5175 # Media Recorder
+                    - http://localhost:3000 # Flash Surveys
                     - https://plus.dev.dashmr.com
                     - https://plus.dashmr.com
                     - https://survey.dashmr.com
