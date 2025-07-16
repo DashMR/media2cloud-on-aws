@@ -1421,6 +1421,9 @@ Resources:
                     - http://localhost:3000 # Flash Surveys
                     - https://survey.dashmr.com
                     - https://survey.dev.dashmr.com
+                    - https://dev.flashsurveys.com
+                    - https://www.flashsurveys.com
+                    - https://flashsurveys.com
                     - https://emea.focusvision.com
                     - https://tes.decipherinc.com
                 AllowedMethods:
@@ -1456,6 +1459,9 @@ Resources:
                     - https://plus.dashmr.com
                     - https://survey.dashmr.com
                     - https://survey.dev.dashmr.com
+                    - https://dev.flashsurveys.com
+                    - https://www.flashsurveys.com
+                    - https://flashsurveys.com
                     - https://emea.focusvision.com
                     - https://tes.decipherinc.com
                 AllowedMethods:
