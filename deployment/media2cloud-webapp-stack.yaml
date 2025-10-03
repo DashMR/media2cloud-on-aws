@@ -1422,8 +1422,11 @@ Resources:
                     - http://localhost:3001 # Flash Surveys - Admin Portal
                     - https://survey.dashmr.com
                     - https://survey.dev.dashmr.com
+                    - https://survey.uat.dashmr.com
                     - https://dev.flashsurveys.com
+                    - https://uat.flashsurveys.com
                     - https://admin.dev.flashsurveys.com
+                    - https://admin.uat.flashsurveys.com
                     - https://admin.flashsurveys.com
                     - https://www.flashsurveys.com
                     - https://flashsurveys.com
@@ -1461,8 +1464,11 @@ Resources:
                     - http://localhost:3001 # Flash Surveys - Admin Portal
                     - https://survey.dashmr.com
                     - https://survey.dev.dashmr.com
+                    - https://survey.uat.dashmr.com
                     - https://dev.flashsurveys.com
+                    - https://uat.flashsurveys.com
                     - https://admin.dev.flashsurveys.com
+                    - https://admin.uat.flashsurveys.com
                     - https://admin.flashsurveys.com
                     - https://www.flashsurveys.com
                     - https://flashsurveys.com
