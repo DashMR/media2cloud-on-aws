@@ -1418,10 +1418,16 @@ Resources:
                     - http://127.0.0.1:5173 # Dash+
                     - http://localhost:5174 # Dash Survey Tool (eventually will migrate to Flash Survey)
                     - http://localhost:5175 # Media Recorder
-                    - http://localhost:3000 # Flash Surveys
+                    - http://localhost:3000 # Flash Surveys - Member Portal
+                    - http://localhost:3001 # Flash Surveys - Admin Portal
                     - https://survey.dashmr.com
                     - https://survey.dev.dashmr.com
+                    - https://survey.uat.dashmr.com
                     - https://dev.flashsurveys.com
+                    - https://uat.flashsurveys.com
+                    - https://admin.dev.flashsurveys.com
+                    - https://admin.uat.flashsurveys.com
+                    - https://admin.flashsurveys.com
                     - https://www.flashsurveys.com
                     - https://flashsurveys.com
                     - https://emea.focusvision.com
@@ -1454,12 +1460,16 @@ Resources:
                     - http://127.0.0.1:5173 # Dash+
                     - http://localhost:5174 # Dash Survey Tool (eventually will migrate to Flash Survey)
                     - http://localhost:5175 # Media Recorder
-                    - http://localhost:3000 # Flash Surveys
-                    - https://plus.dev.dashmr.com
-                    - https://plus.dashmr.com
+                    - http://localhost:3000 # Flash Surveys - Member Portal
+                    - http://localhost:3001 # Flash Surveys - Admin Portal
                     - https://survey.dashmr.com
                     - https://survey.dev.dashmr.com
+                    - https://survey.uat.dashmr.com
                     - https://dev.flashsurveys.com
+                    - https://uat.flashsurveys.com
+                    - https://admin.dev.flashsurveys.com
+                    - https://admin.uat.flashsurveys.com
+                    - https://admin.flashsurveys.com
                     - https://www.flashsurveys.com
                     - https://flashsurveys.com
                     - https://emea.focusvision.com
