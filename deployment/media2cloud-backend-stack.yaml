@@ -216,6 +216,9 @@ Parameters:
     BlipImageArn:
         Type: String
         Description: BlipImageArn
+    S3KMSKeyArn:
+        Type: String
+        Description: S3KMSKeyArn
 
 Conditions:
     bStartOnObjectCreation: !Equals
@@ -4658,6 +4661,7 @@ Resources:
                     ENV_BACKLOG_TABLE: !Ref BacklogTable
                     ENV_BACKLOG_TOPIC_ARN: !Ref BacklogTopic
                     ENV_BACKLOG_TOPIC_ROLE_ARN: !GetAtt BacklogTopicRole.Arn
+                    ENV_S3_KMS_KEY_ARN: !Ref S3KMSKeyArn
 
     AnalysisAudioStateMachine:
         Type: AWS::StepFunctions::StateMachine

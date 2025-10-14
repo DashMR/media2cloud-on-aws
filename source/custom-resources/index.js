@@ -84,6 +84,10 @@ exports.handler = async (event, context) => {
       case 'DescribeSageMakerEndpoint':
         handler = require('./lib/sagemaker').DescribeSageMakerEndpoint;
         break;
+      /* kms */
+      case 'GetKMSKeyArn':
+        handler = require('./lib/kms').GetKMSKeyArn;
+        break;
       default:
         break;
     }

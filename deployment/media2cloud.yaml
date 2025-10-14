@@ -287,6 +287,12 @@ Resources:
                                     - logs:CreateLogStream
                                     - logs:PutLogEvents
                                 Resource: !GetAtt CustomResourcesLogGroup.Arn
+                            ## KMS - describe key for getting ARN from alias
+                            -
+                                Effect: Allow
+                                Action:
+                                    - kms:DescribeKey
+                                Resource: !Sub "arn:aws:kms:${AWS::Region}:${AWS::AccountId}:key/*"
 
     CustomResourcesLambda:
         Type: AWS::Lambda::Function
@@ -620,6 +626,17 @@ Resources:
 
     ################################################################################
     #
+    # Get KMS Key ARN from alias
+    #
+    ################################################################################
+    GetS3KMSKeyArn:
+        Type: Custom::GetKMSKeyArn
+        Properties:
+            ServiceToken: !GetAtt CustomResourcesLambda.Arn
+            KeyAlias: "alias/aws/s3"
+
+    ################################################################################
+    #
     # Backend stack
     #
     ################################################################################
@@ -727,6 +744,7 @@ Resources:
                     - Options
                     - S3Key
                 BlipImageArn: !Ref BlipImageArn
+                S3KMSKeyArn: !GetAtt GetS3KMSKeyArn.KeyArn
 
     ################################################################################
     #
