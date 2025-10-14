@@ -1,33 +1,41 @@
-const AWS = require('aws-sdk');
-const crypto = require('crypto');
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+const AWS = (() => {
+  try {
+    const AWSXRay = require('aws-xray-sdk');
+    return AWSXRay.captureAWS(require('aws-sdk'));
+  } catch (e) {
+    return require('aws-sdk');
+  }
+})();
+const mxBaseResponse = require('../shared/mxBaseResponse');
 
 /**
  * @function GetKMSKeyArn
  * @param {object} event
  * @param {object} context
  */
-async function GetKMSKeyArn(event, context) {
-  const requestType = event.RequestType;
-  const { KeyAlias } = event.ResourceProperties;
-  
-  // Create a unique physical resource ID using hash of StackId and LogicalResourceId
-  const hashInput = `${event.StackId}-${event.LogicalResourceId}`;
-  const hash = crypto.createHash('sha256').update(hashInput).digest('hex').substring(0, 16);
-  const physicalResourceId = `kms-key-${hash}`;
-
-  if (requestType === 'Delete') {
-    return {
-      Status: 'SUCCESS',
-      PhysicalResourceId: physicalResourceId,
-    };
-  }
-
-  if (!KeyAlias) {
-    throw new Error('KeyAlias is required');
-  }
-
+exports.GetKMSKeyArn = async (event, context) => {
   try {
-    const kms = new AWS.KMS();
+    class X0 extends mxBaseResponse(class {}) {}
+    const x0 = new X0(event, context);
+
+    const { KeyAlias } = event.ResourceProperties;
+
+    if (x0.isRequestType('Delete')) {
+      x0.storeResponseData('Status', 'SKIPPED');
+      return x0.responseData;
+    }
+
+    if (!KeyAlias) {
+      throw new Error('KeyAlias is required');
+    }
+
+    const kms = new AWS.KMS({
+      apiVersion: '2014-11-01',
+      customUserAgent: process.env.ENV_CUSTOM_USER_AGENT,
+    });
     
     const response = await kms.describeKey({
       KeyId: KeyAlias
@@ -37,20 +45,13 @@ async function GetKMSKeyArn(event, context) {
       throw new Error(`Unable to retrieve ARN for key alias ${KeyAlias}`);
     }
 
-    return {
-      Status: 'SUCCESS',
-      PhysicalResourceId: physicalResourceId,
-      Data: {
-        KeyArn: response.KeyMetadata.Arn,
-        KeyId: response.KeyMetadata.KeyId
-      }
-    };
-  } catch (error) {
-    console.error(`Failed to describe KMS key ${KeyAlias}:`, error);
-    throw new Error(`Failed to describe KMS key ${KeyAlias}: ${error.message}`);
-  }
-}
+    x0.storeResponseData('KeyArn', response.KeyMetadata.Arn);
+    x0.storeResponseData('KeyId', response.KeyMetadata.KeyId);
+    x0.storeResponseData('Status', 'SUCCESS');
 
-module.exports = {
-  GetKMSKeyArn,
+    return x0.responseData;
+  } catch (e) {
+    e.message = `GetKMSKeyArn: ${e.message}`;
+    throw e;
+  }
 };

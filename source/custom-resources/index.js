@@ -86,7 +86,7 @@ exports.handler = async (event, context) => {
         break;
       /* kms */
       case 'GetKMSKeyArn':
-        handler = require('./lib/kms').GetKMSKeyArn;
+        handler = require('./lib/kms/index').GetKMSKeyArn;
         break;
       default:
         break;
