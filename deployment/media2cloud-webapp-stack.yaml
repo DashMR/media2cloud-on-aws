@@ -1435,6 +1435,7 @@ Resources:
                     - https://flashsurveys.com
                     - https://emea.focusvision.com
                     - https://tes.decipherinc.com
+                    - https://ca.decipherinc.com/
                 AllowedMethods:
                     - HEAD
                     - GET
@@ -1480,6 +1481,7 @@ Resources:
                     - https://flashsurveys.com
                     - https://emea.focusvision.com
                     - https://tes.decipherinc.com
+                    - https://ca.decipherinc.com/
                 AllowedMethods:
                     - HEAD
                     - GET
