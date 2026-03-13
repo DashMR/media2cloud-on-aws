@@ -1434,6 +1434,7 @@ Resources:
                     - https://www.flashsurveys.com
                     - https://flashsurveys.com
                     - https://emea.focusvision.com
+                    - https://surveys2.kalever.net # Added for qriousinsight on 3/13/2026
                     - https://tes.decipherinc.com
                     - https://ca.decipherinc.com/
                 AllowedMethods:
@@ -1480,6 +1481,7 @@ Resources:
                     - https://www.flashsurveys.com
                     - https://flashsurveys.com
                     - https://emea.focusvision.com
+                    - https://surveys2.kalever.net # Added for qriousinsight on 3/13/2026
                     - https://tes.decipherinc.com
                     - https://ca.decipherinc.com/
                 AllowedMethods:
