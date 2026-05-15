@@ -14,7 +14,7 @@ Mappings:
             Name: demo
     Node:
         Runtime:
-            Version: nodejs16.x
+            Version: nodejs24.x
     Cognito:
         Group:
             Viewer: viewer

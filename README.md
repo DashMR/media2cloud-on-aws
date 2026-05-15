@@ -61,7 +61,7 @@ __
 ## Building and customizing the guidance
 
 * **Prerequisites:** building the guidance requires the following tools to be installed on your system.
-  * [NodeJS 16.x](https://nodejs.org/en/download/)
+  * [NodeJS 24.x](https://nodejs.org/en/download/)
   * [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/)
   * [jq](https://stedolan.github.io/jq/)
 * Create a bucket in the AWS region you would like to deploy the guidance. For example, ```media2cloud-template-us-east-1``` in us-east-1 region.

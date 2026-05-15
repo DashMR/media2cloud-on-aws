@@ -19,7 +19,7 @@ Mappings:
             Version: OpenSearch_1.3
     Node:
         Runtime:
-            Version: nodejs16.x
+            Version: nodejs24.x
 
 Parameters:
     S3Bucket:
