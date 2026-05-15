@@ -141,7 +141,7 @@ Mappings:
             DisplayName: BacklogSNS
     Node:
         Runtime:
-            Version: nodejs16.x
+            Version: nodejs24.x
 
 Parameters:
     S3Bucket:
