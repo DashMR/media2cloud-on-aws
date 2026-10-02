@@ -45,12 +45,23 @@ docker run --rm \
     mkdir -p nodejs
     npm_config_build_from_source=true npm install --prefix nodejs canvas@${VER_CANVAS}
 
-    release_dir=$(dirname "$(find nodejs/node_modules/canvas/build/Release -name canvas.node -print -quit)")
+    # node-gyp also leaves a duplicate canvas.node under build/Release/obj.target/,
+    # which "find -print -quit" can match instead of the one bindings.js actually
+    # loads (../build/Release/canvas.node). Pin to the real load path explicitly.
+    release_dir=nodejs/node_modules/canvas/build/Release
+    test -f "${release_dir}/canvas.node"
     ldd "${release_dir}/canvas.node" \
       | awk "/=> \/.*\.so/ { print \$3 } /^\/.*\.so/ { print \$1 }" \
       | while read -r lib; do cp -Lv "${lib}" "${release_dir}/"; done
-    find "${release_dir}" \( -name "*.node" -o -name "*.so*" \) \
-      -exec patchelf --set-rpath "\$ORIGIN" {} \; || true
+    find "${release_dir}" -maxdepth 1 \( -name "*.node" -o -name "*.so*" \) \
+      -exec patchelf --set-rpath "\$ORIGIN" {} \;
+
+    # Verify every dependency now resolves before packaging the layer.
+    if ldd "${release_dir}/canvas.node" | grep -q "not found"; then
+      echo "ERROR: unresolved shared library dependencies in canvas.node:" >&2
+      ldd "${release_dir}/canvas.node" | grep "not found" >&2
+      exit 1
+    fi
 
     zip -rq "${OUTPUT_ZIP}" nodejs
     chown "${HOST_UID}:${HOST_GID}" "${OUTPUT_ZIP}"
